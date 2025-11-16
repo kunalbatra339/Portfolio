@@ -38,7 +38,7 @@ const Projects = () => {
       technologies: ['React', 'Python', 'AI/ML', 'Computer Vision'],
       gradient: 'var(--gradient-forest)',
       icon: '🌿',
-      liveUrl: 'https.ai-problem-solver-beta.vercel.app/',
+      liveUrl: 'https://ai-problem-solver-beta.vercel.app/',
     },
     {
       id: 5,
