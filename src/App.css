@@ -1052,3 +1052,51 @@ body::before {
   /* object-position: 50% 20%;   /* Custom: 50% from left, 20% from top (adjust these values) */
   object-position: top; /* Start with 'top' for a headshot */
 }
+
+/* Add this to your main CSS file (e.g., App.css, index.css)
+*/
+
+/* This media query targets "mobile" screens (768px wide or less) */
+@media (max-width: 768px) {
+  
+  /* 1. Target the main container for all hero text/buttons */
+  .hero-content {
+    /* This will center-align the h1, p, and the scroll button */
+    text-align: center;
+    
+    /* This stacks everything vertically and centers it */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 2. Target the container for your two main buttons */
+  .cta-buttons {
+    /* Stack the buttons vertically on mobile */
+    flex-direction: column;
+    
+    /* Center the buttons horizontally */
+    align-items: center;
+    
+    /* Add some space between the stacked buttons */
+    gap: 1rem; 
+    
+    /* Make the container take full width */
+    width: 100%;
+  }
+
+  /* 3. Make the buttons themselves look good */
+  .cta-buttons .btn {
+    /* Make the buttons wider so they are easier to tap */
+    width: 80%;
+    
+    /* But don't let them get TOO wide */
+    max-width: 350px; 
+  }
+
+  /* 4. The .scroll-indicator button will now be centered 
+     because of the text-align: center on .hero-content */
+  .scroll-indicator {
+    margin-top: 2rem; /* Add a little space above it */
+  }
+}
