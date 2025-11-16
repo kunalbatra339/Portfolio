@@ -9,14 +9,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="social-links">
-            <a 
-              href="https://github.com/kunalbatra339" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <Github size={24} />
-            </a>
+            
             <a 
               href="https://www.linkedin.com/in/kunal-batra-3a3a00347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
               target="_blank" 
