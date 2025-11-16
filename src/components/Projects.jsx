@@ -47,7 +47,7 @@ const Projects = () => {
       technologies: ['React', 'Vite', 'JavaScript', 'CSS'],
       gradient: 'var(--gradient-sunset)',
       icon: '📋',
-      liveUrl: 'https.todo-list-ed45.vercel.app/',
+      liveUrl: 'https://todo-list-ed45.vercel.app/',
     },
     {
       id: 6,
