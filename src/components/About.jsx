@@ -1,6 +1,6 @@
 import React from 'react'
 // 1. Import your photo from the assets folder
-import myPhoto from '../assets/images/myPhoto.jpg'
+import myPhoto from '../assets/images/image.png'
 
 const About = () => {
   return (
@@ -15,7 +15,13 @@ const About = () => {
               <img 
                 src={myPhoto} 
                 alt="Kunal Batra" 
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover',
+                  objectPosition: 'top', // <-- This is the added line
+                  imageRendering: 'pixelated'
+                }} 
               />
             </div>
 
