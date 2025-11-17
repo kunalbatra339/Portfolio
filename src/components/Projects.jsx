@@ -38,7 +38,7 @@ const Projects = () => {
       technologies: ['React', 'Python', 'AI/ML', 'Computer Vision'],
       gradient: 'var(--gradient-forest)',
       icon: '🌿',
-      liveUrl: 'https.ai-problem-solver-beta.vercel.app/',
+      liveUrl: 'https://ai-problem-solver-beta.vercel.app/',
     },
     {
       id: 5,
@@ -47,7 +47,7 @@ const Projects = () => {
       technologies: ['React', 'Vite', 'JavaScript', 'CSS'],
       gradient: 'var(--gradient-sunset)',
       icon: '📋',
-      liveUrl: 'https.todo-list-ed45.vercel.app/',
+      liveUrl: 'https://todo-list-ed45.vercel.app/',
     },
     {
       id: 6,
