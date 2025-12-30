@@ -26,7 +26,7 @@ const Contact = () => {
   }
 
   // 🔹 SEND TO ZAPIER (NEW)
-  fetch("https://hooks.zapier.com/hooks/catch/25864937/uw2qtun/", {
+  fetch("https://hooks.zapier.com/hooks/catch/25864937/uw2lj4l/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
