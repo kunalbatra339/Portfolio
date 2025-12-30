@@ -7,29 +7,49 @@ const Contact = () => {
   const [status, setStatus] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setStatus('Sending...')
+  e.preventDefault()
+  setStatus('Sending...')
 
-    // --- KEY CHANGES ARE HERE ---
-    // Read variables from Vite's 'import.meta.env' object
-    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const userID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    // --- END OF CHANGES ---
+  const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+  const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+  const userID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
-    emailjs.sendForm(serviceID, templateID, form.current, userID)
-      .then((result) => {
-        console.log(result.text)
-        setStatus("Message sent successfully! I'll get back to you soon.")
-        form.current.reset()
-      }, (error) => {
-        console.log(error.text)
-        setStatus('Failed to send message. Please try again.')
-      })
-      
-    // This timeout was too short, I've made it 5 seconds
-    setTimeout(() => setStatus(''), 5000) 
+  // 🔹 Extract form values manually (for Zapier)
+  const formData = new FormData(form.current)
+
+  const zapierPayload = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    subject: formData.get("subject"),
+    message: formData.get("message"),
+    timestamp: new Date().toISOString()
   }
+
+  // 🔹 SEND TO ZAPIER (NEW)
+  fetch("https://hooks.zapier.com/hooks/catch/25864937/uw2qtun/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(zapierPayload)
+  })
+  .catch(err => {
+    console.error("Zapier error:", err)
+  })
+
+  // 🔹 EXISTING EMAILJS (UNCHANGED)
+  emailjs.sendForm(serviceID, templateID, form.current, userID)
+    .then(() => {
+      setStatus("Message sent successfully! I'll get back to you soon.")
+      form.current.reset()
+    }, (error) => {
+      console.error(error)
+      setStatus('Failed to send message. Please try again.')
+    })
+
+  setTimeout(() => setStatus(''), 5000)
+}
+
 
   const contactMethods = [
     {
