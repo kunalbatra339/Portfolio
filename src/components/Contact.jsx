@@ -7,48 +7,48 @@ const Contact = () => {
   const [status, setStatus] = useState('')
 
   const handleSubmit = (e) => {
-  e.preventDefault()
-  setStatus('Sending...')
+    e.preventDefault()
+    setStatus('Sending...')
 
-  const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID
-  const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-  const userID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+    const userID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
-  // 🔹 Extract form values manually (for Zapier)
-  const formData = new FormData(form.current)
+    // 🔹 Extract form values
+    const formData = new FormData(form.current)
 
-  const zapierPayload = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    subject: formData.get("subject"),
-    message: formData.get("message"),
-    timestamp: new Date().toISOString()
-  }
+    // 🔹 SEND TO ZAPIER (FIXED VERSION)
+    const zapierData = new FormData()
+    zapierData.append("name", formData.get("name"))
+    zapierData.append("email", formData.get("email"))
+    zapierData.append("subject", formData.get("subject"))
+    zapierData.append("message", formData.get("message"))
+    zapierData.append("timestamp", new Date().toISOString())
 
-  // 🔹 SEND TO ZAPIER (NEW)
-  fetch("https://hooks.zapier.com/hooks/catch/25864937/uw2lj4l/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(zapierPayload)
-  })
-  .catch(err => {
-    console.error("Zapier error:", err)
-  })
-
-  // 🔹 EXISTING EMAILJS (UNCHANGED)
-  emailjs.sendForm(serviceID, templateID, form.current, userID)
-    .then(() => {
-      setStatus("Message sent successfully! I'll get back to you soon.")
-      form.current.reset()
-    }, (error) => {
-      console.error(error)
-      setStatus('Failed to send message. Please try again.')
+    fetch("https://hooks.zapier.com/hooks/catch/25864937/uw2lj4l/", {
+      method: "POST",
+      body: zapierData
+    }).catch(err => {
+      console.error("Zapier error:", err)
     })
 
-  setTimeout(() => setStatus(''), 5000)
-}
+    // 🔹 EXISTING EMAILJS (UNCHANGED)
+    emailjs.sendForm(serviceID, templateID, form.current, userID)
+      .then(() => {
+        setStatus("Message sent successfully! I'll get back to you soon.")
+        form.current.reset()
+      })
+      .catch((error) => {
+        console.error(error)
+        setStatus('Failed to send message. Please try again.')
+      })
+
+    setTimeout(() => setStatus(''), 5000)
+  }
+
+  // rest of component stays SAME
+
+
 
 
   const contactMethods = [
