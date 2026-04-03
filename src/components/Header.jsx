@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { useScrollspy } from '../hooks/useScrollspy'
 
 const Header = () => {
@@ -32,54 +32,93 @@ const Header = () => {
   }
 
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+    <header className={`site-header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
-        <nav className="nav">
-          <div className="logo">Kunal Batra</div>
-          
-          <ul className="nav-links">
-            {navItems.map(item => (
-              <li key={item.href}>
-                <a 
-                  href={item.href}
-                  className={activeSection === item.href.substring(1) ? 'active' : ''}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleNavClick(item.href)
-                  }}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <button 
-            className="menu-toggle"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+        <nav className="header-shell">
+          <a
+            className="brand"
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault()
+              handleNavClick('#home')
+            }}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <span className="brand-mark">KB</span>
+            <span className="brand-copy">
+              <strong>Kunal Batra</strong>
+              <span>Design-minded developer</span>
+            </span>
+          </a>
+
+          <div className="nav-links">
+            {navItems.map(item => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={activeSection === item.href.substring(1) ? 'active' : ''}
+                onClick={(e) => {
+                  e.preventDefault()
+                  handleNavClick(item.href)
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="header-actions">
+            <a
+              href="#contact"
+              className="nav-cta"
+              onClick={(e) => {
+                e.preventDefault()
+                handleNavClick('#contact')
+              }}
+            >
+              Start a Project
+              <ArrowUpRight size={16} />
+            </a>
+
+            <button
+              className="menu-toggle"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </nav>
 
-        <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
-          <ul>
-            {navItems.map(item => (
-              <li key={item.href}>
-                <a 
-                  href={item.href}
+        {isMenuOpen && (
+          <div className="mobile-nav">
+            <ul>
+              {navItems.map(item => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handleNavClick(item.href)
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href="#contact"
                   onClick={(e) => {
                     e.preventDefault()
-                    handleNavClick(item.href)
+                    handleNavClick('#contact')
                   }}
                 >
-                  {item.label}
+                  Start a Project
                 </a>
               </li>
-            ))}
-          </ul>
-        </div>
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   )

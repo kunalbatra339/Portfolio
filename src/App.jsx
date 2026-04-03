@@ -10,7 +10,9 @@ import './App.css'
 
 function App() {
   return (
-    <div className="App">
+    <div className="app-shell">
+      <div className="page-glow one" />
+      <div className="page-glow two" />
       <Header />
       <Hero />
       <About />
