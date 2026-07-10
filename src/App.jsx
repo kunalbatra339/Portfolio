@@ -1,4 +1,3 @@
-// hi
 import React from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -11,9 +10,7 @@ import './App.css'
 
 function App() {
   return (
-    <div className="app-shell">
-      <div className="page-glow one" />
-      <div className="page-glow two" />
+    <div className="App">
       <Header />
       <Hero />
       <About />
