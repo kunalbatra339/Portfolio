@@ -31,6 +31,8 @@ const Projects = () => {
       ],
       gradient: 'var(--gradient-fire)',
       icon: '🛡️',
+      androidUrl:
+        'https://drive.google.com/file/d/1x3ZQ2llz6AzR2XAtf-FSMMUJcyP6lxqM/view?usp=drivesdk',
       githubUrl: 'https://github.com/kunalbatra339/Sentinel',
     },
     {
