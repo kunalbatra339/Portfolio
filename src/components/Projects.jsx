@@ -179,7 +179,7 @@ const Projects = () => {
   return (
     <section id="projects" className="projects section">
       <div className="container">
-        <h2 className="section-title">Featured AI Projects</h2>
+        <h2 className="section-title">Featured Projects</h2>
 
         <div className="projects-grid">
           {renderProjects(featuredProjects)}
